@@ -3,14 +3,6 @@ battlecalc_save_name=['HoG_Battlecalc','HoG_Battlecalc1','HoG_Battlecalc2'];
 document.addEventListener("DOMContentLoaded", function() {
 	'use strict';
 
-	function arr(v) { return Array.prototype.slice.call(v); }
-	function appendTo(a) { return function(b) { return a.appendChild(b); }; }
-	function el(tag, contents) { var el = document.createElement(tag); if(contents) contents.map(appendTo(el)); return el; }
-	function txt() { return document.createTextNode(arr(arguments).join()); }
-	function div() { return el("div", arr(arguments)); }
-	function span() { return el("span", arr(arguments)); }
-	function label() { return el("label", arr(arguments)); }
-
 	function selectElementContents(el) {
 		if (window.getSelection && document.createRange) {
 			var sel = window.getSelection();
@@ -66,14 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			a.push(k + ": " + (typeof v === "number" ? beauty(v) : v));
 		}
 		return a.join("\n");
-	}
-	function dmgred(armor) {
-		return 1 - 1 / (1 + Math.log(1 + armor / 1E4) / Math.log(2));
-	}
-	function speedred(def, atk, weight) {
-		var a = def / atk * 4.6 / Math.log(weight) - 2;
-		var b = 2 * a / (1 + Math.abs(2 * a));
-		return .5 * (1.1 - .9 * b);
 	}
 	function shipSummaryData(ship, friend, foe) {
 		var shipStats = {
